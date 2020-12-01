@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "../form/index";
+import MyForm from "../form/index";
 import Results from "../results/index";
 import API from "../../utils/API";
 
@@ -46,7 +46,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <Form
+                <MyForm
                     search={this.state.search}
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}

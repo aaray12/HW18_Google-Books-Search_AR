@@ -1,29 +1,30 @@
 
 import React from "react";
+import {Form, Button} from 'react-bootstrap';
 
 
-function Form(props){
+function MyForm(props){
 return (
   <div className="container">
-  <form>
+  <Form>
     <div className="form-group">
-      <label htmlFor="search"><h2>Search for and save Books of Interest</h2></label>
+      <label htmlFor="search"><h2>Search For and Save Your Favorite Books!</h2></label>
       <input
         onChange={props.handleInputChange}
         value={props.search}
         name="search"
         type="text"
         className="form-control"
-        placeholder="Search a Book"
+        placeholder="Search for a Book!"
         id="search"
       />
-      <button onClick={props.handleFormSubmit} className="btn btn-dark mt-3 mb-5">
+      <Button onClick={props.handleFormSubmit}>
         Search
-        </button>
+        </Button>
     </div>
-  </form>
+  </Form>
   </div>
 );
 }
 
-export default Form;
+export default MyForm;
