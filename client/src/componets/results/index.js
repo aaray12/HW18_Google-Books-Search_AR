@@ -13,18 +13,13 @@ class Results extends Component {
     //         .catch(err => console.error(err));
     // }
 
-    handleSave = book => {
-
-        if (this.state.savedBooks.map(book => book._id).includes(book._id)) {
-            API.deleteBook(book._id)
-                .then(deletedBook => this.setState({ savedBooks: this.state.savedBooks.filter(book => book._id !== deletedBook._id) }))
-                .catch(err => console.error(err));
-        } else {
-            API.saveBook(book)
-                .then(savedBook => this.setState({ savedBooks: this.state.savedBooks.concat([savedBook]) }))
-                .catch(err => console.error(err));
-        }
+    saveBook = book => {
+        book.preventDefault();
+        API.saveBook(book)
+            .then(savedBook => this.setState({ savedBooks: this.state.savedBooks.concat([savedBook])}))
+            .catch(err => console.error(err));
     }
+
 
     render() {
         return (
@@ -33,20 +28,20 @@ class Results extends Component {
                     <h1 className="text-center">No Results to Display</h1>
                 ) : (
                         <div>
-                            {this.props.books.map(result => (
-                                <div className="card mb-3" key={result._id}>
+                            {this.props.books.map(book => (
+                                <div className="card mb-3" key={book._id}>
                                     <div className="row">
                                         <div className="col-md-2">
-                                            <img alt={result.title} className="img-fluid" src={result.image} />
+                                            <img alt={book.title} src={book.image} />
                                         </div>
                                         <div className="col-md-10">
                                             <div className="card-body">
-                                                <h5 className="card-title">{result.title} by {result.authors}</h5>
-                                                <p className="card-text">{result.description}</p>
+                                                <h5 className="card-title">{book.title} by {book.authors}</h5>
+                                                <p className="card-text">{book.description}</p>
                                                 <div>
-                                                    <a href={result.link} className="btn badge-pill btn-outline-dark mt-3" target="_blank" >View</a>
-                                                    <button onClick={() => this.handleSave(result)} className="btn badge-pill btn-outline-warning mt-3 ml-3" >
-                                                        {this.state.savedBooks.map(book => book._id).includes(result._id) ? "Unsave" : "Save"}
+                                                    <a href={book.link} >View</a>
+                                                    <button onClick={() => this.saveBook(book)}  >
+                                                        Save
                                                     </button>
                                                 </div>
                                             </div>
