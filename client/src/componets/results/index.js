@@ -14,7 +14,7 @@ class Results extends Component {
     // }
 
     saveBook = book => {
-        book.preventDefault();
+        // book.preventDefault();
         API.saveBook(book)
             .then(savedBook => this.setState({ savedBooks: this.state.savedBooks.concat([savedBook])}))
             .catch(err => console.error(err));
